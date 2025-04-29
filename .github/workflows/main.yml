@@ -7,11 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up JDK
@@ -20,13 +20,19 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Install Maven dependencies
+    - name: Install dependencies
       working-directory: MtdrSpring/backend
       run: mvn clean install
 
-    - name: Run backend (Spring Boot)
+    - name: Run Spring Boot app
       working-directory: MtdrSpring/backend
       run: mvn spring-boot:run
       env:
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASS: ${{ secrets.DB_PASS }}
+        SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+        SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_BOT_NAME: ${{ secrets.TELEGRAM_BOT_NAME }}
+
+        
+
