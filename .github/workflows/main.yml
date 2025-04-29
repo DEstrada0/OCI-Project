@@ -1,6 +1,5 @@
-// pipeline.yml
 
-
+name: Java CI with Maven
 
 on:
   push:
