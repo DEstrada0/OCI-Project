@@ -33,11 +33,11 @@ jobs:
         node-version: '18'
       
     - name: Install frontend dependencies
-      working-directory: MtdrSpring/frontend
+      working-directory: MtdrSpring/backend/src/main/frontend
       run: npm install
       
     - name: Build frontend manually
-      working-directory: MtdrSpring/frontend
+      working-directory: MtdrSpring/backend/src/main/frontend
       run: npm run build
       
         
