@@ -40,25 +40,20 @@ jobs:
       working-directory: MtdrSpring/backend/src/main/frontend
       run: CI='' npm run build
     
-      
 
-      
-        
-      
+    - name: Install dependencies for backend
+      working-directory: MtdrSpring/backend
+      run: mvn clean install
 
-    # - name: Install dependencies
-    #   working-directory: MtdrSpring/backend
-    #   run: mvn clean install
-
-    # - name: Run Spring Boot app
-    #   working-directory: MtdrSpring/backend
-    #   run: mvn.cmd spring-boot:run
-    #   env:
-    #     SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
-    #     SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
-    #     SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-    #     TELEGRAM_BOT_NAME: ${{ secrets.TELEGRAM_BOT_NAME }}
+    - name: Run Spring Boot app
+      working-directory: MtdrSpring/backend
+      run: mvn.cmd spring-boot:run
+      env:
+        SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+        SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_BOT_NAME: ${{ secrets.TELEGRAM_BOT_NAME }}
 
         
 
