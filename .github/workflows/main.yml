@@ -27,25 +27,35 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Debug frontend build manually
-      working-directory: MtdrSpring/frontend   # or wherever your package.json lives
-      run: |
-          npm install
-          npm run build
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+      
+    - name: Install frontend dependencies
+      working-directory: MtdrSpring/frontend
+      run: npm install
+      
+    - name: Build frontend manually
+      working-directory: MtdrSpring/frontend
+      run: npm run build
+      
+        
+      
 
-    - name: Install dependencies
-      working-directory: MtdrSpring/backend
-      run: mvn clean install
+    # - name: Install dependencies
+    #   working-directory: MtdrSpring/backend
+    #   run: mvn clean install
 
-    - name: Run Spring Boot app
-      working-directory: MtdrSpring/backend
-      run: mvn.cmd spring-boot:run
-      env:
-        SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
-        SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
-        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        TELEGRAM_BOT_NAME: ${{ secrets.TELEGRAM_BOT_NAME }}
+    # - name: Run Spring Boot app
+    #   working-directory: MtdrSpring/backend
+    #   run: mvn.cmd spring-boot:run
+    #   env:
+    #     SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+    #     SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+    #     SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+    #     TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    #     TELEGRAM_BOT_NAME: ${{ secrets.TELEGRAM_BOT_NAME }}
 
         
 
