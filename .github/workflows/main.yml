@@ -1,3 +1,9 @@
+
+
+
+
+
+
 name: Java CI with Spring Boot
 
 on:
@@ -7,6 +13,7 @@ on:
     branches: [ main ]
 
 jobs:
+
   build-and-run:
     runs-on: ubuntu-latest
 
@@ -19,6 +26,12 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+
+    - name: Debug frontend build manually
+      working-directory: MtdrSpring/frontend   # or wherever your package.json lives
+      run: |
+          npm install
+          npm run build
 
     - name: Install dependencies
       working-directory: MtdrSpring/backend
