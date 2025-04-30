@@ -19,6 +19,12 @@ const SprintDetails = () => {
   const [selectedTask, setSelectedTask] = useState(null); // Agregar estado para la tarea seleccionada
   const navigate = useNavigate();
 
+  const fetchTasks = async () => {
+    const response = await fetch(`/tasksUserSprint?oracleUserId=${userId}&sprintId=${sprintId}`);
+    const data = await response.json();
+    setTasks(data);
+  };
+
   useEffect(() => {
     const fetchSprintDetails = async () => {
       const response = await fetch(`/sprints/${sprintId}`);
@@ -30,12 +36,6 @@ const SprintDetails = () => {
     fetchTasks();
 
   }, [userId, sprintId, fetchTasks]);
-
-  const fetchTasks = async () => {
-    const response = await fetch(`/tasksUserSprint?oracleUserId=${userId}&sprintId=${sprintId}`);
-    const data = await response.json();
-    setTasks(data);
-  };
   
   const handleLogout = () => {
     setUserId(0);
