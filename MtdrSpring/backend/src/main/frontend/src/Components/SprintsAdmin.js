@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SprintContext } from "../Contexts/SprintContext";
 import { UserContext } from "../Contexts/UserContext";
 import { TaskContext } from "../Contexts/TaskContext";
@@ -22,16 +22,6 @@ const SprintsAdmin = () => {
 
   const navigate = useNavigate();
 
-  const fetchTasks = useCallback(async () => {
-    try {
-      const response = await fetch(`/tasksbySprintId?sprintId=${sprintId}`);
-      const data = await response.json();
-      setTasks(data);
-    } catch (error) {
-      console.error("Error obteniendo tareas del sprint:", error);
-    }
-  }, [sprintId]);
-
   useEffect(() => {
     const fetchSprintDetails = async () => {
       try {
@@ -44,7 +34,17 @@ const SprintsAdmin = () => {
     };
     fetchSprintDetails();
     fetchTasks();
-  }, [sprintId, fetchTasks]);
+  }, [sprintId]);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch(`/tasksbySprintId?sprintId=${sprintId}`);
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Error obteniendo tareas del sprint:", error);
+    }
+  };
   
   const handleLogout = () => {
     setUserId(0);
