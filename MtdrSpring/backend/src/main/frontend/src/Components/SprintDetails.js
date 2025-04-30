@@ -29,7 +29,7 @@ const SprintDetails = () => {
     fetchSprintDetails();
     fetchTasks();
 
-  }, [userId, sprintId]);
+  }, [userId, sprintId, fetchTasks]);
 
   const fetchTasks = async () => {
     const response = await fetch(`/tasksUserSprint?oracleUserId=${userId}&sprintId=${sprintId}`);

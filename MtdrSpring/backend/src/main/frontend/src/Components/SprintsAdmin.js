@@ -34,7 +34,7 @@ const SprintsAdmin = () => {
     };
     fetchSprintDetails();
     fetchTasks();
-  }, [sprintId]);
+  }, [sprintId, fetchTasks]);
 
   const fetchTasks = async () => {
     try {

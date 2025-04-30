@@ -38,7 +38,7 @@ jobs:
       
     - name: Build frontend manually
       working-directory: MtdrSpring/backend/src/main/frontend
-      run: npm run build
+      run: npm run build 
       
         
       
